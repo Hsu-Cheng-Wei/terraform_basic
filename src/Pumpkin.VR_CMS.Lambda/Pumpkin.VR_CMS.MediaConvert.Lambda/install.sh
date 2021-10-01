@@ -1,0 +1,1 @@
+dotnet lambda package -o ../../out/Pumpkin.VR_CMS.MediaConvert.Lambda.zip
