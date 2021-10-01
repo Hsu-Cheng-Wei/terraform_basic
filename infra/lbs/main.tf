@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg_lb" {  
-  vpc_id = module.dynamic_var.vpc.id
+  vpc_id = module.dynamic_network_var.vpc.id
 
   name = "${module.global_var.prefix}-sg-lb"
 
@@ -30,6 +30,9 @@ resource "aws_security_group" "sg_lb" {
       self = null
     }    
   ]
+  tags = {
+    Name = "${module.global_var.prefix}-sg-lb"
+  }
 }
 
 /*------------------loadbalance----------------*/
@@ -37,15 +40,15 @@ resource "aws_lb" "lb" {
   name = "${module.global_var.prefix}-lb"
   load_balancer_type = "application"
   security_groups = [aws_security_group.sg_lb.id]
-  subnets = module.dynamic_var.vpc_subnet_public_ids
+  subnets = module.dynamic_network_var.vpc_subnet_public_ids
 }
 
 resource "aws_lb_target_group" "lb_target_group" {
-  name     = "${module.global_var.prefix}-lb-target-group"
+  name     = module.global_var.lb_target_name
   port     = 80
   protocol = "HTTP"
   target_type = "ip"
-  vpc_id = module.dynamic_var.vpc.id
+  vpc_id = module.dynamic_network_var.vpc.id
 }
 
 resource "aws_lb_listener" "listener" {

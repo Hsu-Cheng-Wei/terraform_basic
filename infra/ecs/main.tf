@@ -1,8 +1,8 @@
 resource "aws_ecs_cluster" "cluster" {
-    name = "${module.global_var.prefix}-cluster"
+    name = module.global_var.cluster_name
 
     tags = {
-       Name = "${module.global_var.prefix}-cluster"
+       Name = module.global_var.cluster_name
     }
 }
 

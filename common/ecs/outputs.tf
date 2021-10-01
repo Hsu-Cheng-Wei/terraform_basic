@@ -1,3 +1,7 @@
+output "cluster_name" {
+  value = "${module.core.prefix}-cluster"
+}
+
 output "task_definition" {
   value =  {
         family = "${module.core.prefix}-task-definition"
