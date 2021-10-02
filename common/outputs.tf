@@ -26,7 +26,15 @@ output "vpc_private_subnets" {
   value = module.network.vpc_private_subnets
 }
 
+output "lb_target_name" {
+  value = module.lb.target_name
+}
+
 output "task_definition" {
   value = module.ecs.task_definition
+}
+
+output "cluster_name" {
+  value = module.ecs.cluster_name
 }
 
