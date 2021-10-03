@@ -52,4 +52,6 @@ resource "aws_ecs_service" "service" {
         container_name   = "hello-world"
         container_port   = 80        
     }
+
+    depends_on = [aws_security_group.sg_ecs_service]
 }

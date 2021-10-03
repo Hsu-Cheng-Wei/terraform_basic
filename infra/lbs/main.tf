@@ -49,6 +49,12 @@ resource "aws_lb_target_group" "lb_target_group" {
   protocol = "HTTP"
   target_type = "ip"
   vpc_id = module.dynamic_network_var.vpc.id
+
+  health_check {
+    path = "/health"
+    port = 80
+    protocol = "HTTP"
+  }
 }
 
 resource "aws_lb_listener" "listener" {
