@@ -13,3 +13,7 @@ module "lb" {
 module "ecs" {
     source = "./ecs"
 }
+
+module "s3" {
+    source = "./s3"
+}

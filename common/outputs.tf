@@ -38,3 +38,10 @@ output "cluster_name" {
   value = module.ecs.cluster_name
 }
 
+output "s3" {
+  value = {
+    bucket_name = module.s3.bucket_name,
+    bucket_directory = module.s3.bucket_directory
+  }
+}
+
