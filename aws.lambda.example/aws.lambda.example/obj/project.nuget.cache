@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "5ZGsCuXhDaiLgTpFoZvx2tnuEKt6P0Vb7P4JYsXov/mz9yP8AdRr+4NZ5ehhbVclZZ39YxBQbDEZ2ipmUHXroA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Pumpkin012\\source\\repos\\aws.lambda.example\\aws.lambda.example\\aws.lambda.example.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Pumpkin012\\.nuget\\packages\\amazon.lambda.core\\2.0.0\\amazon.lambda.core.2.0.0.nupkg.sha512",
+    "C:\\Users\\Pumpkin012\\.nuget\\packages\\amazon.lambda.serialization.systemtextjson\\2.1.0\\amazon.lambda.serialization.systemtextjson.2.1.0.nupkg.sha512",
+    "C:\\Users\\Pumpkin012\\.nuget\\packages\\awssdk.core\\3.7.3.22\\awssdk.core.3.7.3.22.nupkg.sha512",
+    "C:\\Users\\Pumpkin012\\.nuget\\packages\\awssdk.simpleemailv2\\3.7.1.9\\awssdk.simpleemailv2.3.7.1.9.nupkg.sha512"
+  ],
+  "logs": []
+}
