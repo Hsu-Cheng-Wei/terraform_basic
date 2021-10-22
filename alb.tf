@@ -38,7 +38,7 @@ module "alb" {
       protocol = "HTTP"
       target_type = "ip"
       health_check = {
-        path: "/",
+        path: "/health",
         port: "80",
         protocol: "HTTP",
         interval: 25,

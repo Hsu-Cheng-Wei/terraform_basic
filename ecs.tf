@@ -53,7 +53,7 @@ resource "aws_security_group" "sg_ecs_service" {
 resource "aws_ecs_service" "service" {
     name = "${local.prefix}-ecs-service"
     cluster = aws_ecs_cluster.cluster.arn
-    task_definition = aws_ecs_task_definition.hello_world_task_definition.arn
+    task_definition = aws_ecs_task_definition.task_definition.arn
     desired_count = 2
     launch_type = "FARGATE"
     network_configuration {
@@ -64,7 +64,7 @@ resource "aws_ecs_service" "service" {
 
     load_balancer {
         target_group_arn = module.alb.target_groups["${local.ap_lb_prefix_name}-target-group"].arn
-        container_name   = "hello-world"
+        container_name   = "cms-api"
         container_port   = 80        
     }
 

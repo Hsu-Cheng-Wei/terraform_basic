@@ -28,7 +28,23 @@ module "endpoints" {
         service_type        = "Gateway"
         tags                = { Name = "${local.region}-s3"}
         route_table_ids     = module.vpc.private_route_table_ids
-    }    
+    }
+
+    lambda = {
+        service             = "lambda"
+        service_type        = "Interface"
+        tags                = { Name = "${local.region}-lambda"}
+        private_dns_enabled = true        
+        subnet_ids          = module.vpc.private_subnets
+    }
+
+    logs = {
+        service             = "logs"
+        service_type        = "Interface"
+        tags                = { Name = "${local.region}-logs"}
+        private_dns_enabled = true
+        subnet_ids          = module.vpc.private_subnets      
+    }
   }
 
   tags = {

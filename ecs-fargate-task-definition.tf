@@ -1,12 +1,33 @@
-# // https://github.com/cn-terraform/terraform-aws-ecs-fargate-task-definition
-# module "ecs-fargate-task-definition" {
-#     source  = "cn-terraform/ecs-fargate-task-definition/aws"
-#     version = "1.0.23"
-#     name_prefix = local.prefix
+resource "aws_ecs_task_definition" "task_definition" {
+    family = "${local.prefix}-api-task-definition"
+    requires_compatibilities = ["FARGATE"]
+    cpu                      = "1024"
+    memory                   = "2048"
+    network_mode             = "awsvpc"
+    execution_role_arn       = aws_iam_role.task_execution_role.arn
+    task_role_arn            = aws_iam_role.task_role.arn
 
-#     container_name  = "HelloWorld"
-#     container_image = "718286959245.dkr.ecr.ap-northeast-1.amazonaws.com/deploy-demo"
-# }
+    container_definitions    = jsonencode([
+        {
+            "name": "cms-api",
+            "image": "718286959245.dkr.ecr.ap-northeast-1.amazonaws.com/cms-api:latest",      
+            "memory": 512,
+            "cpu":    256,
+            "essential": true,
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort":      80
+                }
+            ]
+        },
+    ])
+
+    depends_on = [
+      aws_iam_role.task_role,
+      aws_iam_role_policy_attachment.ecs_execution_policy_attachment
+    ]
+}
 
 resource "aws_ecs_task_definition" "hello_world_task_definition" {
     family = "${local.prefix}-task-definition"
@@ -31,19 +52,6 @@ resource "aws_ecs_task_definition" "hello_world_task_definition" {
                 }
             ]
         },
-        # {
-        #     "name": "api",
-        #     "image": "718286959245.dkr.ecr.ap-northeast-1.amazonaws.com/cms-api:latest",      
-        #     "memory": 4096,
-        #     "cpu":    2048,
-        #     "essential": true,
-        #     "portMappings": [
-        #         {
-        #             "containerPort": 80,
-        #             "hostPort":      80
-        #         }
-        #     ]
-        # }        
     ])
 
     depends_on = [
@@ -108,7 +116,7 @@ resource "aws_iam_role" "task_role" {
                         "s3:PutObject"
                     ],
                     "Effect": "Allow",
-                    "Resource": "*"
+                    "Resource": "arn:aws:s3:::cms-server-bucket/*"
                 },
                 {
                     "Action": [
@@ -121,15 +129,13 @@ resource "aws_iam_role" "task_role" {
                     "Resource": "*"
                 },
                 {
-                    "Action": [
-                        "logs:CreateLogGroup",
-                        "logs:CreateLogStream",
-                        "logs:PutLogEvents",
-                        "logs:DescribeLogGroups",
-                    ],
                     "Effect": "Allow",
-                    "Resource": "*"
-                },                      
+                    "Action": [
+                        "lambda:InvokeFunction",
+                        "lambda:InvokeAsync"
+                    ],
+                    "Resource": "arn:aws:lambda:ap-northeast-1:718286959245:function:SendEmail"
+                },
             ]
         })
     }

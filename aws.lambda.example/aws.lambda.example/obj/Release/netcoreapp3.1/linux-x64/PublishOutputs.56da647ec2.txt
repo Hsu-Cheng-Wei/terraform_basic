@@ -1,6 +1,0 @@
-C:\Users\Pumpkin012\source\repos\aws.lambda.example\aws.lambda.example\bin\Release\netcoreapp3.1\publish\aws.lambda.example.dll
-C:\Users\Pumpkin012\source\repos\aws.lambda.example\aws.lambda.example\bin\Release\netcoreapp3.1\publish\aws.lambda.example.deps.json
-C:\Users\Pumpkin012\source\repos\aws.lambda.example\aws.lambda.example\bin\Release\netcoreapp3.1\publish\aws.lambda.example.runtimeconfig.json
-C:\Users\Pumpkin012\source\repos\aws.lambda.example\aws.lambda.example\bin\Release\netcoreapp3.1\publish\aws.lambda.example.pdb
-C:\Users\Pumpkin012\source\repos\aws.lambda.example\aws.lambda.example\bin\Release\netcoreapp3.1\publish\Amazon.Lambda.Core.dll
-C:\Users\Pumpkin012\source\repos\aws.lambda.example\aws.lambda.example\bin\Release\netcoreapp3.1\publish\Amazon.Lambda.Serialization.SystemTextJson.dll
