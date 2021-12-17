@@ -20,7 +20,7 @@ namespace Pumpkin.VR_CMS.CloudWatch.MediaConvert.Lambda
     {
         private static string BaseUrl = "http://tf-lb-20211027083636768500000002-509948876.ap-northeast-1.elb.amazonaws.com";
 
-        private static string ApiUrl = "/api/Production/vedio/convert/update";
+        private static string ApiUrl = "/api/Production/video/convert/update";
 
         private static string Token = "E3FB276697DC8621FB1D03C8501C5C02";
 
